@@ -26,7 +26,7 @@ async function handleGenerateShortURL(req, res) {
         });
         console.log("URL:", url);
         
-        return res.status(201).json({id: shortId});
+        return res.status(201).render("home", {id: shortId});
     } catch (error) {
         console.error(`Something went wrong while generating your Short URL: ${error}`);
     }
