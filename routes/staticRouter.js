@@ -15,3 +15,7 @@ staticRouter.get("/", async (req, res) => {
     const urls = await showAllUrls();
     res.render("home", {urls});
 });
+
+staticRouter.get("/signup", async (req, res) => {
+    return res.render("signup");
+})

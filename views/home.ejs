@@ -35,8 +35,8 @@
             </a>
         </div>
         <%}%>
-
-            <table style="width:100%">
+    <% if(locals.urls) { %>
+        <table style="width:100%">
                 <thead>
                     <tr>
                         <th>S. No.</th>
@@ -62,6 +62,7 @@
                         <%}); %>
                 </tbody>
             </table>
+        <% } %>
 </body>
 
 </html>
