@@ -1,4 +1,6 @@
 import { User } from "../models/user.js";
+import { v4 as uuidv4 } from "uuid";
+import { setUser } from "../service/auth.js";
 
 async function handleUserSignUp(req, res) {
     try {
@@ -14,6 +16,30 @@ async function handleUserSignUp(req, res) {
     }
 }
 
+async function handleUserLogIn(req, res, next) {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({
+            email,
+            password
+        });
+
+
+        if (!user) {
+            return res.status(201).render("signin");
+        }
+
+        const sessionId = uuidv4();
+        setUser(sessionId, user);
+        res.cookie("uid", sessionId);
+        return res.status(201).redirect("/");
+
+    } catch (error) {
+        console.error(`User LogIn Fails: ${error}`);
+    }
+}
+
 export {
-    handleUserSignUp
+    handleUserSignUp,
+    handleUserLogIn
 }

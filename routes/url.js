@@ -1,8 +1,11 @@
 import { Router } from "express";
 import { getRedirectUrl, getUrlAnalytics, handleGenerateShortURL, showAllUrls } from "../controllers/url.js";
+// import { verifyAuth } from "../controllers/user.js";
 
-export const router = Router();
+export const urlRouter = Router();
 
-router.route("/").post(handleGenerateShortURL).get(showAllUrls);
-router.get("/:id", getRedirectUrl);
-router.get("/analytics/:id", getUrlAnalytics);
+// urlRouter.use(verifyAuth);
+
+urlRouter.route("/").post(handleGenerateShortURL).get(showAllUrls);
+urlRouter.get("/:id", getRedirectUrl);
+urlRouter.get("/analytics/:id", getUrlAnalytics);

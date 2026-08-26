@@ -1,12 +1,21 @@
 import { URL } from "../models/url.js";
 import { nanoid } from "nanoid";
 
+async function getAllUrls(createdBy) {
+    try {
+        const urls = createdBy ? await URL.find({createdBy: createdBy}) : await URL.find({createdBy});
+        return urls;
+    } catch (error) {
+        console.error(`Error while fetching All Urls: ${error}`);
+    }
+}
+
 async function showAllUrls(req, res) {
     try {
-        const urls = await URL.find({});
+        const urls = await getAllUrls();
         return res.json({urls});
     } catch (error) {
-        
+        console.error(`Error while showing All Urls: ${error}`);
     }
 }
 
@@ -22,9 +31,9 @@ async function handleGenerateShortURL(req, res) {
         const url = await URL.create({
             shortUrl: shortId,
             redirectUrl: redirectUrl,
-            visitHistory: []
+            visitHistory: [],
+            createdBy: req.user._id
         });
-        console.log("URL:", url);
         
         return res.status(201).render("home", {id: shortId});
     } catch (error) {
@@ -70,5 +79,6 @@ export {
     handleGenerateShortURL,
     getRedirectUrl,
     showAllUrls,
-    getUrlAnalytics
+    getUrlAnalytics,
+    getAllUrls
 }

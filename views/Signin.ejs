@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +11,14 @@
         }
     </style>
 </head>
-
 <body>
-    <h1>SignUp</h1>
-    <form action="/api/user/signup" method="post">
-        <label for="name">Full Name:</label>
-        <input type="text" name="name" id="name" required>
+    <h1>SignIn</h1>
+    <form action="/api/user/signin" method="post">
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required>
         <label for="password">password:</label>
         <input type="password" name="password" id="password" required>
-        <button type="submit">SignUp</button>
+        <button type="submit">SignIn</button>
     </form>
 </body>
-
 </html>
