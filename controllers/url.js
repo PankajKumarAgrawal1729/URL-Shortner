@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 
 async function getAllUrls(createdBy) {
     try {
-        const urls = createdBy ? await URL.find({createdBy: createdBy}) : await URL.find({createdBy});
+        const urls = createdBy ? await URL.find({createdBy: createdBy}) : await URL.find({});
         return urls;
     } catch (error) {
         console.error(`Error while fetching All Urls: ${error}`);

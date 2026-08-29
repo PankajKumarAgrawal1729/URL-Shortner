@@ -34,9 +34,9 @@ async function handleUserLogIn(req, res, next) {
         // setUser(sessionId, user);
 
         const token = setUser(user);
-        // res.cookie("uid", token);
-        return res.status(201).json({token});
-        // return res.status(201).redirect("/");
+        res.cookie("token", token);
+        // return res.status(201).json({token});
+        return res.status(201).redirect("/");
 
     } catch (error) {
         console.error(`User LogIn Fails: ${error}`);
