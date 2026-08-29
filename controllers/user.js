@@ -29,9 +29,11 @@ async function handleUserLogIn(req, res, next) {
             return res.status(201).render("signin");
         }
 
-        const sessionId = uuidv4();
-        setUser(sessionId, user);
-        res.cookie("uid", sessionId);
+        // const sessionId = uuidv4();
+        // setUser(sessionId, user);
+
+        const token = setUser(user);
+        res.cookie("uid", token);
         return res.status(201).redirect("/");
 
     } catch (error) {
